@@ -19,12 +19,12 @@ jobs:
          with:
             path: ~/.m2/repository
             key: ${{runner.os}}-maven-${{hashFiles('**/pom.xml')}}
-#      -  run: .github/workflows/git-config-user.sh
-#      -  run: .github/workflows/perform-release.sh
-#      -  run: .github/workflows/upload-release.sh
-#         env:
-#            UPLOAD_URL: https://api.bintray.com/maven/seelenvirtuose/maven-repo/testing-greeting-lib
-#            MAVEN_SETTINGS_FILE: .github/workflows/maven-settings.xml
-#            MAVEN_SERVER_ID: bintray
-#            MAVEN_SERVER_USERNAME: seelenvirtuose
-#            MAVEN_SERVER_PASSWORD: ${{secrets.PERSONAL_TOKEN_BINTRAY}}
+      -  run: .github/workflows/git-config-user.sh
+      -  run: .github/workflows/perform-release.sh
+      -  run: .github/workflows/upload-release.sh
+         env:
+            UPLOAD_URL: https://api.bintray.com/maven/seelenvirtuose/maven-repo/testing-greeting-lib
+            MAVEN_SETTINGS_FILE: .github/workflows/maven-settings.xml
+            MAVEN_SERVER_ID: bintray
+            MAVEN_SERVER_USERNAME: seelenvirtuose
+            MAVEN_SERVER_PASSWORD: ${{secrets.PERSONAL_TOKEN_BINTRAY}}

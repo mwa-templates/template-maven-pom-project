@@ -22,4 +22,4 @@ jobs:
          with:
             path: ~/.m2/repository
             key: ${{runner.os}}-maven-${{hashFiles('**/pom.xml')}}
-#      -  run: mvn ${MVN_CLI_ARGS} clean verify
+      -  run: mvn ${MVN_CLI_ARGS} clean verify

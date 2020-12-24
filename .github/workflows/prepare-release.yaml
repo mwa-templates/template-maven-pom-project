@@ -19,5 +19,5 @@ jobs:
          with:
             path: ~/.m2/repository
             key: ${{runner.os}}-maven-${{hashFiles('**/pom.xml')}}
-#      -  run: .github/workflows/git-config-user.sh
-#      -  run: .github/workflows/prepare-release.sh
+      -  run: .github/workflows/git-config-user.sh
+      -  run: .github/workflows/prepare-release.sh
