@@ -8,6 +8,7 @@
 	<groupId>%GROUP_ID%</groupId>
 	<artifactId>%ARTIFACT_ID%</artifactId>
 	<version>0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
 	<name>%NAME%</name>
 
