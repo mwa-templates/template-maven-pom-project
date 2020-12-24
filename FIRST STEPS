@@ -1,0 +1,11 @@
+1) Exchange the following placeholders in `pom.xml` with actual values:
+
+		%GROUP_ID%
+		%ARTIFACT_ID%
+		%NAME%
+		%REPO_OWNER%
+		%REPO_NAME%
+
+2) Rename the directory `.github/workflows-template` to `.github/workflows`.
+
+3) Afterwards this file can be removed.
