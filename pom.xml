@@ -32,6 +32,8 @@
 
 		<repo-owner>%REPO_OWNER%</repo-owner>
 		<repo-name>%REPO_NAME%</repo-name>
+
+		<version.maven-deploy-plugin>3.0.0-M1</version.maven-deploy-plugin>
 	</properties>
 
 	<scm>
@@ -46,5 +48,17 @@
 			<url>https://maven.pkg.github.com/${repo-owner}/${repo-name}</url>
 		</repository>
 	</distributionManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>${version.maven-deploy-plugin}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 
 </project>
