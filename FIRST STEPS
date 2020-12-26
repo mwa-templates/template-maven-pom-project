@@ -12,7 +12,9 @@
 		pom.xml
 		.github/workflows-template/perform-release.yaml
 
-2) Add the following secrets under GitHub -> Project -> Settings -> Secrets:
+2) Add a new package with the name `$REPO_NAME$` under Bintray -> $REPO_OWNER$ -> repositories -> maven-repo.
+
+3) Add the following secrets under GitHub -> Project -> Settings -> Secrets:
 
 		GITHUB_PERSONAL_ACCESS_TOKEN
 		BINTRAY_API_KEY
@@ -20,9 +22,7 @@
    The `GITHUB_PERSONAL_ACCESS_TOKEN` must have the full repo scope and the full packages scope.
    The `BINTRAY_API_KEY` must belong to the above mentioned `$BINTRAY_USERNAME$`.
 
-3) Rename the directory `.github/workflows-template` to `.github/workflows`.
-
-4) Add a new package with the name `$REPO_NAME$` under Bintray -> $REPO_OWNER$ -> repositories -> maven-repo.
+4) Rename the directory `.github/workflows-template` to `.github/workflows`.
 
 5) Afterwards this `FIRST STEPS` file can be deleted.
 
