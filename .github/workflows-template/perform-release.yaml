@@ -1,5 +1,11 @@
 name: Perform release
-on: workflow_dispatch
+on:
+   workflow_dispatch:
+      inputs:
+         skipSiteDeployment:
+            description: Skip site deployment?
+            required: true
+            default: 'false'
 env:
    MAVEN_OPTS: -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
    MVN_CLI_ARGS: --batch-mode --update-snapshots
@@ -23,8 +29,10 @@ jobs:
       -  run: .github/workflows/perform-release.sh
       -  run: .github/workflows/upload-release.sh
          env:
-            UPLOAD_URL: https://api.bintray.com/maven/$REPO_OWNER$/maven-repo/$REPO_NAME$
+            UPLOAD_URL: https://api.bintray.com/maven/mwa-testing/maven-repo/testing-parent-pom
             MAVEN_SETTINGS_FILE: .github/workflows/maven-settings.xml
             MAVEN_SERVER_ID: bintray
-            MAVEN_SERVER_USERNAME: $BINTRAY_USERNAME$
+            MAVEN_SERVER_USERNAME: seelenvirtuose
             MAVEN_SERVER_PASSWORD: ${{secrets.BINTRAY_API_KEY}}
+      -  run: .github/workflows/deploy-site.sh
+         if: ${{github.event.inputs.skipSiteDeployment}} == 'false'

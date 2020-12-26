@@ -14,7 +14,7 @@
 
 	<name>$PROJECT_NAME$</name>
 	<!-- <description>...</description> -->
-	<!-- <url>...</url> -->
+	<!-- <url>https://$REPO_OWNER$.github.io/$REPO_NAME$</url> -->
 	<!-- <inceptionYear>...</inceptionYear> -->
 
 	<licenses>
@@ -42,6 +42,16 @@
 		<connection>scm:git:https://github.com/${repo-owner}/${repo-name}.git</connection>
 		<tag>HEAD</tag>
 	</scm>
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<url>https://maven.pkg.github.com/${repo-owner}/${repo-name}</url>
+		</repository>
+		<site>
+			<id>github</id>
+			<url>scm:git:https://github.com/${repo-owner}/${repo-name}.git</url>
+		</site>
+	</distributionManagement>
 	<issueManagement>
 		<system>GitHub Issues</system>
 		<url>https://github.com/${repo-owner}/${repo-name}/issues</url>
@@ -50,12 +60,6 @@
 		<system>GitHub Actions</system>
 		<url>https://github.com/${repo-owner}/${repo-name}/actions</url>
 	</ciManagement>
-	<distributionManagement>
-		<repository>
-			<id>github</id>
-			<url>https://maven.pkg.github.com/${repo-owner}/${repo-name}</url>
-		</repository>
-	</distributionManagement>
 
 	<!-- <repositories>...</repositories> -->
 

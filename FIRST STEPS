@@ -17,7 +17,9 @@
 
 4) Add a new package with the name `$REPO_NAME$` under Bintray -> $REPO_OWNER$ -> repositories -> maven-repo.
 
-5) Add the following secrets under GitHub -> Project -> Settings -> Secrets:
+5) Enable the `gh-pages` branch for the repository. (Easy way: Simply use a starting theme.)
+
+6) Add the following secrets under GitHub -> Project -> Settings -> Secrets:
 
 		PERSONAL_ACCESS_TOKEN_GITHUB
 		BINTRAY_API_KEY
@@ -25,8 +27,8 @@
    The `PERSONAL_ACCESS_TOKEN_GITHUB` must have the full repo scope and the full packages scope.
    The `BINTRAY_API_KEY` must belong to the above mentioned `$BINTRAY_USERNAME$`.
 
-6) Rename the directory `.github/workflows-template` to `.github/workflows`.
+7) Rename the directory `.github/workflows-template` to `.github/workflows`.
 
-7) Afterwards this `FIRST STEPS` file can be deleted.
+8) Afterwards this `FIRST STEPS` file can be deleted.
 
-8) Commit and push the changes. You are ready to go ...
+9) Commit and push the changes. You are ready to go ...
