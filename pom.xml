@@ -5,12 +5,12 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>%GROUP_ID%</groupId>
-	<artifactId>%ARTIFACT_ID%</artifactId>
+	<groupId>%PROJECT_GROUP_ID%</groupId>
+	<artifactId>%PROJECT_ARTIFACT_ID%</artifactId>
 	<version>0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>%NAME%</name>
+	<name>%PROJECT_NAME%</name>
 
 	<licenses>
 		<license>

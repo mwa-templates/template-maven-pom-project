@@ -11,7 +11,7 @@ jobs:
       steps:
       -  uses: actions/checkout@v2
          with:
-            token: ${{secrets.PERSONAL_TOKEN_GITHUB}}
+            token: ${{secrets.GITHUB_PERSONAL_ACCESS_TOKEN}}
       -  uses: actions/setup-java@v1
          with:
             java-version: 11

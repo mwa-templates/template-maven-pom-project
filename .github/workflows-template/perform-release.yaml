@@ -11,7 +11,7 @@ jobs:
       steps:
       -  uses: actions/checkout@v2
          with:
-            token: ${{secrets.PERSONAL_TOKEN_GITHUB}}
+            token: ${{secrets.GITHUB_PERSONAL_ACCESS_TOKEN}}
       -  uses: actions/setup-java@v1
          with:
             java-version: 11
@@ -23,8 +23,8 @@ jobs:
       -  run: .github/workflows/perform-release.sh
       -  run: .github/workflows/upload-release.sh
          env:
-            UPLOAD_URL: https://api.bintray.com/maven/seelenvirtuose/maven-repo/testing-greeting-lib
+            UPLOAD_URL: https://api.bintray.com/maven/%REPO_OWNER%/maven-repo/%REPO_NAME%
             MAVEN_SETTINGS_FILE: .github/workflows/maven-settings.xml
             MAVEN_SERVER_ID: bintray
-            MAVEN_SERVER_USERNAME: seelenvirtuose
-            MAVEN_SERVER_PASSWORD: ${{secrets.PERSONAL_TOKEN_BINTRAY}}
+            MAVEN_SERVER_USERNAME: %BINTRAY_USERNAME%
+            MAVEN_SERVER_PASSWORD: ${{secrets.BINTRAY_API_KEY}}

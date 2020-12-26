@@ -1,11 +1,30 @@
-1) Exchange the following placeholders in `pom.xml` with actual values:
+1) Replace all of the following placeholders with actual values
 
-		%GROUP_ID%
-		%ARTIFACT_ID%
-		%NAME%
+		%PROJECT_GROUP_ID%
+		%PROJECT_ARTIFACT_ID%
+		%PROJECT_NAME%
 		%REPO_OWNER%
 		%REPO_NAME%
+		%BINTRAY_USERNAME%
 
-2) Rename the directory `.github/workflows-template` to `.github/workflows`.
+   in all of the following files:
 
-3) Afterwards this file can be removed.
+		pom.xml
+		.github/workflows-template/*.yaml
+		.github/workflows-template/*.sh
+
+2) Add the following secrets under GitHub -> Project -> Settings -> Secrets:
+
+		GITHUB_PERSONAL_ACCESS_TOKEN
+		BINTRAY_API_KEY
+
+   The `GITHUB_PERSONAL_ACCESS_TOKEN` must have the full repo scope and the full packages scope.
+   The `BINTRAY_API_KEY` must belong to the above mentioned `%BINTRAY_USERNAME%`.
+
+3) Rename the directory `.github/workflows-template` to `.github/workflows`.
+
+4) Add a new package with the name `%REPO_NAME%` under Bintray -> %REPO_OWNER% -> repositories -> maven-repo.
+
+5) Afterwards this `FIRST STEPS` file can be deleted.
+
+6) Commit and push the changes. You are ready to go ...
