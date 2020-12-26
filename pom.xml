@@ -7,7 +7,7 @@
 
 	<groupId>$PROJECT_GROUP_ID$</groupId>
 	<artifactId>$PROJECT_ARTIFACT_ID$</artifactId>
-	<version>0.1-SNAPSHOT</version>
+	<version>$PROJECT_VERSION</version>
 	<packaging>pom</packaging>
 
 	<name>$PROJECT_NAME$</name>

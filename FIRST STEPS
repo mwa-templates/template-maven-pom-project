@@ -1,16 +1,17 @@
-1) Replace all of the following placeholders with actual values
+1) In the file `pom.xml` replace the following placeholders with actual values:
 
 		$PROJECT_GROUP_ID$
 		$PROJECT_ARTIFACT_ID$
+		$PROJECT_VERSION$
 		$PROJECT_NAME$
 		$REPO_OWNER$
 		$REPO_NAME$
+
+   In the file `.github/workflows-template/perform-release.yaml` replace the following placeholders with actual values:
+
+		$REPO_OWNER$
+		$REPO_NAME$
 		$BINTRAY_USERNAME$
-
-   in the following files:
-
-		pom.xml
-		.github/workflows-template/perform-release.yaml
 
 2) Add a new package with the name `$REPO_NAME$` under Bintray -> $REPO_OWNER$ -> repositories -> maven-repo.
 
