@@ -29,10 +29,10 @@ jobs:
       -  run: .github/workflows/perform-release.sh
       -  run: .github/workflows/upload-release.sh
          env:
-            UPLOAD_URL: https://api.bintray.com/maven/mwa-testing/maven-repo/testing-parent-pom
+            UPLOAD_URL: https://api.bintray.com/maven/$REPO_OWNER$/maven-repo/$REPO_NAME$
             MAVEN_SETTINGS_FILE: .github/workflows/maven-settings.xml
             MAVEN_SERVER_ID: bintray
-            MAVEN_SERVER_USERNAME: seelenvirtuose
+            MAVEN_SERVER_USERNAME: $BINTRAY_USERNAME$
             MAVEN_SERVER_PASSWORD: ${{secrets.BINTRAY_API_KEY}}
       -  run: .github/workflows/deploy-site.sh
          if: ${{github.event.inputs.skipSiteDeployment}} == 'false'
