@@ -28,11 +28,11 @@
 	<!-- <developers>...</developers> -->
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
 		<repo-owner>$REPO_OWNER$</repo-owner>
 		<repo-name>$REPO_NAME$</repo-name>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<version.maven-deploy-plugin>3.0.0-M1</version.maven-deploy-plugin>
 	</properties>
