@@ -19,7 +19,7 @@
 		PERSONAL_ACCESS_TOKEN_GITHUB
 		BINTRAY_API_KEY
 
-   The `GITHUB_PERSONAL_ACCESS_TOKEN` must have the full repo scope and the full packages scope.
+   The `PERSONAL_ACCESS_TOKEN_GITHUB` must have the full repo scope and the full packages scope.
    The `BINTRAY_API_KEY` must belong to the above mentioned `$BINTRAY_USERNAME$`.
 
 4) Rename the directory `.github/workflows-template` to `.github/workflows`.
