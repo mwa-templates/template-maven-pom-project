@@ -34,5 +34,5 @@ jobs:
             MAVEN_SERVER_ID: bintray
             MAVEN_SERVER_USERNAME: $BINTRAY_USERNAME$
             MAVEN_SERVER_PASSWORD: ${{secrets.BINTRAY_API_KEY}}
-      -  run: .github/workflows/deploy-site.sh
-         if: ${{github.event.inputs.skipSiteDeployment}} == 'false'
+      -  run: .github/workflows/deploy-site
+         if: github.event.inputs.skipSiteDeployment == 'false'

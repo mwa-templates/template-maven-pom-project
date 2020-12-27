@@ -15,7 +15,7 @@ These placeholders need to be replaced with their actual values.
 # Setup in GitHub
 
 Adjust the settings like "Wikis", "Projects", "Merge button", etc.
-If needed (or wanted), enable the `gh-pages` branch for the repository (Easy way: simply use a starting theme).
+If site deployment is needed (or wanted), enable the `gh-pages` branch for the repository (easy way: simply use a starting theme).
 
 Add the following repository secrets:
 
@@ -38,6 +38,8 @@ Then replace the above mentioned placeholders in the following files:
 	pom.xml
 	.github/workflows/perform-release.yaml
 
-In the file `pom.xml`, there are some out-commented sections. Add the needed information or remove them.
+There are some out-commented sections in the POM. Add the needed information or remove these sections.<br>
+
+If site deployment is needed (or wanted), consider setting the default value of the action input `skipSiteDeployment` to `false` in the file `.github/workflows/perform-release.yaml`.
 
 Now this "first steps" file can be deleted, before committing and pushing the changes. You are ready to go ...
