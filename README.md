@@ -55,7 +55,7 @@ If enabled, you also need to enable the `gh-pages` branch for the newly created 
 
 ### Source code adjustments
 
-- The POM file contains the following placeholders that need to be replaced with their actual values.
+The POM file contains the following placeholders that must be replaced with their actual values:
 
 	$PROJECT_GROUP_ID$
 	$PROJECT_ARTIFACT_ID$
@@ -65,9 +65,12 @@ If enabled, you also need to enable the `gh-pages` branch for the newly created 
 	$REPO_OWNER$
 	$REPO_NAME$
 
-- Additionally, the POM contains some out-commented sections. You should add the needed information or consider removing those sections.
+Also important: Rename the directory `.github/workflows-template` to `.github/workflows`.
+
+Additionally, you can/should do the following steps:
+
+- The POM contains some out-commented sections. You should add the needed information or consider removing those sections.
 - Because the file `README.md` (this file) is also copied, you should consider to delete the whole file or at least its content.
 - Check the copyright year in the `LICENSE` file. Or maybe replace the whole license with what you find appropriate.
-- Last step: Rename the directory `.github/workflows-template` to `.github/workflows`.
 
 Now commit and push your changes. You are ready to go ...
