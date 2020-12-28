@@ -13,12 +13,12 @@
 	<packaging>pom</packaging>
 
 	<name>%%PROJECT_NAME%%</name>
-	<!-- <description>...</description> -->
+	<description>%%PROJECT_DESCRIPTION%%</description>
 	<!-- <inceptionYear>...</inceptionYear> -->
 
-	<!-- <url>https://%%REPO_OWNER%%.github.io/%%REPO_NAME%%</url> -->
-	<!-- or -->
 	<!-- <url>https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%</url> -->
+	<!-- or -->
+	<!-- <url>https://%%REPO_OWNER%%.github.io/%%REPO_NAME%%</url> -->
 
 	<licenses>
 		<license>

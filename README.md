@@ -28,19 +28,6 @@ The workflow file `perform-release.yaml` can only be triggered manually for a `r
 
 After creating a new repository based on this template, you need to do some initializing steps.
 
-### POM adjustments
-
-The POM file contains the following placeholders that need to be replaced with their actual valus.
-
-	$PROJECT_GROUP_ID$
-	$PROJECT_ARTIFACT_ID$
-	$PROJECT_VERSION$
-	$PROJECT_NAME$
-	$REPO_OWNER$
-	$REPO_NAME$
-
-Additionally, the POM contains some out-commented sections. You should add the needed information or consider removing those sections.
-
 ### Setup in GitHub
 
 Besides doing some basic settings (like "Wikis", "Projects", "Issues", "Merge buttons", etc.), you need to add the following repository secret:
@@ -65,3 +52,22 @@ Additionally, your Bintray user name must be the same as your GitHub user name. 
 The generation and deployment of site documentation is disabled by default in the `perform-release.yaml` workflow. If you feel to need that, you should consider setting the default value of the action input `doDeploySite` to `true`.
 
 If enabled, you also need to enable the `gh-pages` branch for the newly created repository, because this is where the generated site will be deployed to. Note, that this only works for public repositories.
+
+### Source code adjustments
+
+- The POM file contains the following placeholders that need to be replaced with their actual values.
+
+	$PROJECT_GROUP_ID$
+	$PROJECT_ARTIFACT_ID$
+	$PROJECT_VERSION$
+	$PROJECT_NAME$
+	$PROJECT_DESCRIPTION$
+	$REPO_OWNER$
+	$REPO_NAME$
+
+- Additionally, the POM contains some out-commented sections. You should add the needed information or consider removing those sections.
+- Because the file `README.md` (this file) is also copied, you should consider to delete the whole file or at least its content.
+- Check the copyright year in the `LICENSE` file. Or maybe replace the whole license with what you find appropriate.
+- Last step: Rename the directory `.github/workflows-template` to `.github/workflows`.
+
+Now commit and push your changes. You are ready to go ...
