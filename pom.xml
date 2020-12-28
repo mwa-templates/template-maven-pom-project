@@ -7,20 +7,23 @@
 
 	<!-- <parent>...</parent> -->
 
-	<groupId>$PROJECT_GROUP_ID$</groupId>
-	<artifactId>$PROJECT_ARTIFACT_ID$</artifactId>
-	<version>$PROJECT_VERSION</version>
+	<groupId>%%PROJECT_GROUP_ID%%</groupId>
+	<artifactId>%%PROJECT_ARTIFACT_ID%%</artifactId>
+	<version>%%PROJECT_VERSION%%</version>
 	<packaging>pom</packaging>
 
-	<name>$PROJECT_NAME$</name>
+	<name>%%PROJECT_NAME%%</name>
 	<!-- <description>...</description> -->
-	<!-- <url>https://$REPO_OWNER$.github.io/$REPO_NAME$</url> -->
 	<!-- <inceptionYear>...</inceptionYear> -->
+
+	<!-- <url>https://%%REPO_OWNER%%.github.io/%%REPO_NAME%%</url> -->
+	<!-- or -->
+	<!-- <url>https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%</url> -->
 
 	<licenses>
 		<license>
-			<name>Apache License, Version 2.0</name>
-			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<name>The MIT License</name>
+			<url>https://opensource.org/licenses/MIT</url>
 		</license>
 	</licenses>
 
@@ -28,8 +31,8 @@
 	<!-- <developers>...</developers> -->
 
 	<properties>
-		<repo-owner>$REPO_OWNER$</repo-owner>
-		<repo-name>$REPO_NAME$</repo-name>
+		<repo-owner>%%REPO_OWNER%%</repo-owner>
+		<repo-name>%%REPO_NAME%%</repo-name>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
