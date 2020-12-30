@@ -1,4 +1,4 @@
-# Template Maven JAR Project
+# Template Maven POM Project
 
 This is a template repository for my Maven JAR projects, but of course it might also be useful for others. The main part of this template are the workflow files that define how to build, verify, and deploy the Maven project, as well as how to release it.
 
@@ -45,7 +45,11 @@ Otherwise, you also must add the following repository secrets:
 	BINTRAY_USERNAME
 	BINTRAY_API_KEY
 
-Additionally, your Bintray user name must be the same as your GitHub user name. If you are using an organization, then you must have a Bintray organization with the same name as the GitHub one. For this user or organization you must have a Bintray repository named `maven-repo`. Inside this repository, you need to create a Bintray package with the same name as the newly created GitHub repository.
+Additionally, you have to create the following Bintray package:
+
+	<REPO_OWNER> -> maven-repo -> <REPO_NAME>
+
+The `<REPO_OWNER>` must be the same name of the user or the organization under which your GitHub repository is hosted. The `<REPO_NAME>` is the name of the newly created GitHub repository.
 
 ### Site deployment
 
