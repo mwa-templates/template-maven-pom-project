@@ -1,11 +1,11 @@
-name: Prepare release
+name: Prepare release branch
 on: workflow_dispatch
 env:
    MAVEN_OPTS: -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
    MVN_CLI_ARGS: --batch-mode --update-snapshots
    GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 jobs:
-   prepare-release:
+   prepare-release-branch:
       if: github.ref == 'refs/heads/main'
       runs-on: ubuntu-latest
       steps:
@@ -20,4 +20,4 @@ jobs:
             path: ~/.m2/repository
             key: ${{runner.os}}-maven-${{hashFiles('**/pom.xml')}}
       -  run: .github/workflows/git-config-user.sh
-      -  run: .github/workflows/prepare-release.sh
+      -  run: .github/workflows/prepare-release-branch.sh
