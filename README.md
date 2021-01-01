@@ -75,6 +75,6 @@ Additionally, you can/should do the following steps:
 
 - The POM contains some out-commented sections. You should add the needed information or consider removing those sections.
 - Because the file `README.md` (this file) is also copied, you should consider to delete the whole file or at least its content.
-- Check the copyright year in the `LICENSE` file. Or maybe replace the whole license with what you find appropriate.
+- Check whether the `LICENSE` fits your needs or should be replaced with a more appropriate one.
 
 Now commit and push your changes. You are ready to go ...

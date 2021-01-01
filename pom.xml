@@ -14,7 +14,7 @@
 
 	<name>%%PROJECT_NAME%%</name>
 	<description>%%PROJECT_DESCRIPTION%%</description>
-	<!-- <inceptionYear>...</inceptionYear> -->
+	<inceptionYear>2021</inceptionYear>
 
 	<!-- <url>https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%</url> -->
 	<!-- or -->
