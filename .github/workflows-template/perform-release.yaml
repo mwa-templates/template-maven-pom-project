@@ -5,7 +5,7 @@ on:
          doUploadToBintray:
             description: Do upload to Bintray?
             required: true
-            default: 'true'
+            default: 'false'
          doDeploySite:
             description: Do site deployment?
             required: true
@@ -38,6 +38,6 @@ jobs:
             MAVEN_SERVER_ID: bintray
             MAVEN_SERVER_USERNAME: ${{secrets.BINTRAY_USERNAME}}
             MAVEN_SERVER_PASSWORD: ${{secrets.BINTRAY_API_KEY}}
-            UPLOAD_URL_TEMPLATE: https://api.bintray.com/maven/%%REPO_OWNER%%/maven-repo/%%REPO_NAME%%
+            UPLOAD_URL_TEMPLATE: https://api.bintray.com/maven/%%GITHUB_ACTOR%%/maven-repo-%%GITHUB_REPO_OWNER%%/%%GITHUB_REPO_NAME%%
       -  run: .github/workflows/deploy-site.sh
          if: github.event.inputs.doDeploySite == 'true'

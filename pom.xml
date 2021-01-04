@@ -10,7 +10,7 @@
 	<groupId>%%PROJECT_GROUP_ID%%</groupId>
 	<artifactId>%%PROJECT_ARTIFACT_ID%%</artifactId>
 	<version>%%PROJECT_VERSION%%</version>
-	<packaging>pom</packaging>
+	<!-- <packaging>...</packaging> -->
 
 	<name>%%PROJECT_NAME%%</name>
 	<description>%%PROJECT_DESCRIPTION%%</description>
