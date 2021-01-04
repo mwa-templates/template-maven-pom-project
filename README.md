@@ -80,7 +80,7 @@ Then rename the directory `.github/workflows-template` to `.github/workflows`.
 Additionally, you can/should do the following steps:
 
 - The POM contains some out-commented sections. You should add the needed information or consider removing those sections.
-- Because the file `README.md` (this file) is also copied, you should consider to delete the whole file or at least its content.
-- Check whether the `LICENSE` fits your needs or should be replaced with a more appropriate one.
+- Because this file (`README.md`) is also copied, you should consider to delete this file or at least change its content.
+- Check whether the license fits your needs or should be replaced with a more appropriate one. The license is mentioned in two places: in the `LICENSE` file and in the `<licenses>` section in the POM.
 
 Now commit and push your changes. You are ready to go ...
