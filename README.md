@@ -20,9 +20,9 @@ The workflow file `build-and-deploy.yaml` simply runs a `mvn deploy` command aft
 
 The workflow file `build-and-verify.yaml` simply runs a `mvn verify` command after a push to any other branch, i.e. for `feature/...` or `bugfix/...`.
 
-The workflow file `prepare-release.yaml` can only be triggered manually for the `main` branch. It first creates a new branch `release/x.y`, based on the current POM's snapshot version number (`x.y-SNAPSHOT`). Then it increments the POM's minor version in the `main` branch, so it ends up with `x.(y++)-SNAPSHOT`.
+The workflow file `prepare-release.yaml` can only be triggered manually for the `main` branch. It first creates a new branch `release/x.y`, based on the POM's current snapshot version number (`x.y-SNAPSHOT`). Then it increments the POM's minor version in the `main` branch, so it ends up with `x.(y++)-SNAPSHOT`.
 
-The workflow file `perform-release.yaml` can only be triggered manually for a `release/...` branch. It first uses the [Maven release plugin](https://maven.apache.org/maven-release/maven-release-plugin/) to actually do the release (incl. tagging). The generated release artifacts are deployed to GitHub Packages. The patch version in the POM is also incremented, so it ends up with `x.y.(z++)-SNAPSHOT` in the current `release/...` branch. Additionally, this workflow can upload the release artifacts to a 3rd party platform (e.g. Bintray), and it also can generate site documentation and deploy it to GitHub Packages. All of these additional steps are disabled by default.
+The workflow file `perform-release.yaml` can only be triggered manually for a `release/...` branch. It first uses the [Maven release plugin](https://maven.apache.org/maven-release/maven-release-plugin/) to actually do the release (incl. tagging). The generated release artifacts are deployed to GitHub Packages. The patch version in the POM is also incremented, so it ends up with `x.y.(z++)-SNAPSHOT` in the current `release/...` branch. Additionally, this workflow can upload the release artifacts to a 3rd party platform (e.g. a self-hosted repository manager), and it also can generate site documentation and deploy it to GitHub Packages. All of these additional steps are disabled by default.
 
 ## First steps
 
@@ -36,32 +36,29 @@ Besides doing some basic settings (like "Wikis", "Projects", "Issues", "Merge bu
 
 This personal access token must have the full repo scope and the full packages scope.
 
-### Upload to Bintray
+### Upload to an additional Maven repository
 
-The release upload to Bintray is disabled by default in the `perform-release.yaml` workflow. If you do need that, you should consider setting the default value of the action input `doUploadToBintray` to `true`.
+The release upload to an additional Maven repository is disabled by default in the `perform-release.yaml` workflow. If you do need that, you should consider setting the default value of the action input `doUploadToAdditionalRepo` to `true`.
 
-If enabled, you must add the following repository secrets:
+If enabled, you also must add the following secrets in your GitHub repository:
 
-	BINTRAY_USERNAME
-	BINTRAY_API_KEY
+	MAVEN_SERVER_USERNAME
+	MAVEN_SERVER_PASSWORD
+	MAVEN_UPLOAD_URL_TEMPLATE
 
-The upload URL to Bintray has the following structure:
-
-	https://api.bintray.com/maven/:subject/:repo/:package
-
-The `subject` is either a user or an organization in Bintray. The `repo` is a Bintray repository that must have the Maven type. The `package` is a Bintray package, which corresponds to the GitHub repository. All of these components must of course exist or be created beforehand. The upload script is able to detect and replace the following placeholders in the URL:
+The upload script is able to detect and replace the following placeholders in the URL template:
 
 	%%GITHUB_ACTOR%%
 	%%GITHUB_REPO_OWNER%%
 	%%GITHUB_REPO_NAME%%
 
-See the files `perform-release.yaml` and `upload-release.sh` for more details or for an example. Feel free to adjust the `UPLOAD_URL_TEMPLATE` to your needs.
+See the files `perform-release.yaml` and `upload-release.sh` for more details.
 
 ### Site deployment
 
 The generation and deployment of site documentation is disabled by default in the `perform-release.yaml` workflow. If you do need that, you should consider setting the default value of the action input `doDeploySite` to `true`.
 
-If enabled, you must enable the `gh-pages` branch, because this is where the generated site documentation will be deployed to. Note, that this only works for public repositories.
+If enabled, you also must enable the `gh-pages` branch, because this is where the generated site documentation will be deployed to. Note, that this only works for public GitHub repositories.
 
 ### Source code adjustments
 
