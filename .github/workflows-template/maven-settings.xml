@@ -4,9 +4,9 @@
 
 	<servers>
 		<server>
-			<id>${env.MAVEN_SERVER_ID}</id>
-			<username>${env.MAVEN_SERVER_USERNAME}</username>
-			<password>${env.MAVEN_SERVER_PASSWORD}</password>
+			<id>${env.MAVEN_UPLOAD_ID}</id>
+			<username>${env.MAVEN_UPLOAD_USERNAME}</username>
+			<password>${env.MAVEN_UPLOAD_PASSWORD}</password>
 		</server>
 	</servers>
 

@@ -42,11 +42,11 @@ The release upload to an additional Maven repository is disabled by default in t
 
 If enabled, you also must add the following secrets in your GitHub repository:
 
-	MAVEN_SERVER_USERNAME
-	MAVEN_SERVER_PASSWORD
-	MAVEN_UPLOAD_URL_TEMPLATE
+	MAVEN_UPLOAD_URL
+	MAVEN_UPLOAD_USERNAME
+	MAVEN_UPLOAD_PASSWORD
 
-The upload script is able to detect and replace the following placeholders in the URL template:
+The upload script is able to detect and replace the following placeholders in the upload URL:
 
 	%%GITHUB_ACTOR%%
 	%%GITHUB_REPO_OWNER%%
