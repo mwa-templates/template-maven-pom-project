@@ -64,13 +64,13 @@ If enabled, you also must enable the `gh-pages` branch, because this is where th
 
 The POM file contains the following placeholders that must be replaced with their actual values:
 
-	$PROJECT_GROUP_ID$
-	$PROJECT_ARTIFACT_ID$
-	$PROJECT_VERSION$
-	$PROJECT_NAME$
-	$PROJECT_DESCRIPTION$
-	$REPO_OWNER$
-	$REPO_NAME$
+	%%PROJECT_GROUP_ID%%
+	%%PROJECT_ARTIFACT_ID%%
+	%%PROJECT_VERSION%%
+	%%PROJECT_NAME%%
+	%%PROJECT_DESCRIPTION%%
+	%%REPO_OWNER%%
+	%%REPO_NAME%%
 
 Then rename the directory `.github/workflows-template` to `.github/workflows`.
 
