@@ -32,9 +32,9 @@ After creating a new repository based on this template, you need to do some init
 
 Besides doing some basic settings (like "Wikis", "Projects", "Issues", "Merge buttons", etc.), you need to add the following repository secret:
 
-	PERSONAL_ACCESS_TOKEN_GITHUB
+	GH_TOKEN
 
-This personal access token must have the full repo scope and the full packages scope.
+This must be a personal access token with the scopes `repo` and `write:packages`. It is used as a replacement for the workflows' own `GITHUB_TOKEN` because the latter does not trigger new workflows after pushing code changes (which some workflows do).
 
 ### Upload to an additional Maven repository
 
