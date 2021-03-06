@@ -14,11 +14,8 @@
 
 	<name>%%PROJECT_NAME%%</name>
 	<description>%%PROJECT_DESCRIPTION%%</description>
-	<inceptionYear>2021</inceptionYear>
-
-	<!-- <url>https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%</url> -->
-	<!-- or -->
-	<!-- <url>https://%%REPO_OWNER%%.github.io/%%REPO_NAME%%</url> -->
+	<inceptionYear>%%YEAR%%</inceptionYear>
+	<url>https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%</url>
 
 	<licenses>
 		<license>
@@ -31,9 +28,6 @@
 	<!-- <developers>...</developers> -->
 
 	<properties>
-		<repo-owner>%%REPO_OWNER%%</repo-owner>
-		<repo-name>%%REPO_NAME%%</repo-name>
-
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -41,28 +35,32 @@
 	</properties>
 
 	<scm>
-		<url>https://github.com/${repo-owner}/${repo-name}</url>
-		<connection>scm:git:https://github.com/${repo-owner}/${repo-name}.git</connection>
-		<developerConnection>scm:git:https://github.com/${repo-owner}/${repo-name}.git</developerConnection>
+		<url>https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%</url>
+		<connection>scm:git:https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%.git</connection>
+		<developerConnection>scm:git:https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 	<distributionManagement>
+		<snapshotRepository>
+			<id>maven-upload</id>
+			<url>${env.MAVEN_UPLOAD_SNAPSHOT_URL}</url>
+		</snapshotRepository>
 		<repository>
-			<id>github</id>
-			<url>https://maven.pkg.github.com/${repo-owner}/${repo-name}</url>
+			<id>maven-upload</id>
+			<url>${env.MAVEN_UPLOAD_RELEASE_URL}</url>
 		</repository>
 		<site>
 			<id>github</id>
-			<url>scm:git:https://github.com/${repo-owner}/${repo-name}.git</url>
+			<url>scm:git:https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%.git</url>
 		</site>
 	</distributionManagement>
 	<issueManagement>
 		<system>GitHub Issues</system>
-		<url>https://github.com/${repo-owner}/${repo-name}/issues</url>
+		<url>https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%/issues</url>
 	</issueManagement>
 	<ciManagement>
 		<system>GitHub Actions</system>
-		<url>https://github.com/${repo-owner}/${repo-name}/actions</url>
+		<url>https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%/actions</url>
 	</ciManagement>
 
 	<!-- <repositories>...</repositories> -->
@@ -82,5 +80,7 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+
+	<!-- <profiles>...</profiles> -->
 
 </project>
