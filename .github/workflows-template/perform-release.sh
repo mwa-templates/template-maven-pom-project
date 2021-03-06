@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo ">>> Creating release (with the maven-release-plugin) ..."
 mvn ${MVN_CLI_ARGS} build-helper:parse-version release:prepare release:perform \
 		-Darguments="${MVN_CLI_ARGS} -Dreleasing" \
 		-Dgoals="deploy" \
@@ -8,3 +9,4 @@ mvn ${MVN_CLI_ARGS} build-helper:parse-version release:prepare release:perform \
         -DscmCommentPrefix="[skip ci] " \
         -Dusername="${GITHUB_ACTOR}"\
         -Dpassword="${GITHUB_TOKEN}"
+echo ">>> Done."

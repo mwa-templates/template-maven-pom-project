@@ -1,21 +1,18 @@
-name: Build and verify
-on:
-   push:
-      branches-ignore:
-      - develop
-      - release/**
-   workflow_dispatch: null
+name: Prepare release
+on: workflow_dispatch
 env:
    MAVEN_OPTS: -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
    MVN_CLI_ARGS: --batch-mode --update-snapshots
-   GITHUB_TOKEN: ${{github.token}}
+   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 jobs:
-   build-and-verify:
-      if: github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, 'skip ci')
+   prepare-release:
+      if: github.ref == 'refs/heads/develop'
       runs-on: ubuntu-latest
       steps:
       -  name: Check out corresponding commit
          uses: actions/checkout@v2
+         with:
+            token: ${{secrets.GH_WORKFLOW_TOKEN}}
       -  name: Set up Java 11 and Maven
          uses: actions/setup-java@v1
          with:
@@ -25,5 +22,7 @@ jobs:
          with:
             path: ~/.m2/repository
             key: ${{runner.os}}-maven-${{hashFiles('**/pom.xml')}}
-      -  name: Build and verify project
-         run: .github/workflows/mvn-verify.sh
+      -  name: Configure git user
+         run: .github/workflows/git-config-user.sh
+      -  name: Prepare release
+         run: .github/workflows/prepare-release.sh
