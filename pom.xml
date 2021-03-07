@@ -42,12 +42,12 @@
 	</scm>
 	<distributionManagement>
 		<snapshotRepository>
-			<id>maven-upload</id>
-			<url>${env.MAVEN_UPLOAD_SNAPSHOT_URL}</url>
+			<id>maven-distribution</id>
+			<url>${env.MAVEN_DISTRIBUTION_SNAPSHOTS_URL}</url>
 		</snapshotRepository>
 		<repository>
-			<id>maven-upload</id>
-			<url>${env.MAVEN_UPLOAD_RELEASE_URL}</url>
+			<id>maven-distribution</id>
+			<url>${env.MAVEN_DISTRIBUTION_RELEASES_URL}</url>
 		</repository>
 		<site>
 			<id>github</id>
