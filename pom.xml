@@ -17,22 +17,22 @@
 	<inceptionYear>%%YEAR%%</inceptionYear>
 	<url>https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%</url>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<version.maven-deploy-plugin>3.0.0-M1</version.maven-deploy-plugin>
+	</properties>
+
 	<licenses>
 		<license>
 			<name>The MIT License</name>
 			<url>https://opensource.org/licenses/MIT</url>
 		</license>
 	</licenses>
-
 	<!-- <organization>...</organization> -->
 	<!-- <developers>...</developers> -->
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-		<version.maven-deploy-plugin>3.0.0-M1</version.maven-deploy-plugin>
-	</properties>
+	<!-- <contributors>...</contributors> -->
+	<!-- <mailingLists>...</mailingLists> -->
 
 	<scm>
 		<url>https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%</url>
@@ -40,6 +40,14 @@
 		<developerConnection>scm:git:https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%/issues</url>
+	</issueManagement>
+	<ciManagement>
+		<system>GitHub Actions</system>
+		<url>https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%/actions</url>
+	</ciManagement>
 	<distributionManagement>
 		<snapshotRepository>
 			<id>maven-distribution</id>
@@ -54,19 +62,12 @@
 			<url>scm:git:https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%.git</url>
 		</site>
 	</distributionManagement>
-	<issueManagement>
-		<system>GitHub Issues</system>
-		<url>https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%/issues</url>
-	</issueManagement>
-	<ciManagement>
-		<system>GitHub Actions</system>
-		<url>https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%/actions</url>
-	</ciManagement>
-
 	<!-- <repositories>...</repositories> -->
+	<!-- <pluginRepositories>...</pluginRepositories> -->
+
+	<!-- <modules>...</modules> -->
 
 	<!-- <dependencyManagement>...</dependencyManagement> -->
-
 	<!-- <dependencies>...</dependencies> -->
 
 	<build>
@@ -80,7 +81,7 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-
+	<!-- <reporting>...</reporting> -->
 	<!-- <profiles>...</profiles> -->
 
 </project>
