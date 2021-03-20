@@ -20,9 +20,9 @@ The workflow `Build and verify` (see file `build-and-verify.yaml`) simply runs a
 
 The workflow `Build and distribute`  (see file `build-and-distribute.yaml`) simply runs a `mvn deploy` command after a push to the `develop` branch or to any `release/*` branch. The generated snapshot artifacts are deployed to GitHub Packages by default (see below).
 
-The workflow `Prepare release` (see file `prepare-release.yaml`) can only be triggered manually for the `develop` branch. It first creates a new branch `release/x.y`, based on the POM's current snapshot version number (`x.y-SNAPSHOT`). Then it increments the POM's minor version in the `develop` branch, so it ends up with `x.(y++)-SNAPSHOT`.
+The workflow `Prepare release` (see file `prepare-release.yaml`) can only be triggered manually for the `develop` branch. It first creates a new branch `release/x.y`, based on the POM's current snapshot version number (`x.y-SNAPSHOT`). Then it increments the minor version in the POM, so it ends up with `x.(y++)-SNAPSHOT` in the `develop` branch.
 
-The workflow `Perform release` (see file `perform-release.yaml`) can only be triggered manually for a `release/...` branch. It first uses the [Maven release plugin](https://maven.apache.org/maven-release/maven-release-plugin/) to actually do the release (incl. tagging). The generated release artifacts are deployed to GitHub Packages by default (see below). The patch version in the POM is also incremented, so it ends up with `x.y.(z++)-SNAPSHOT`. This all takes place in the current `release/...` branch. Additionally, this workflow can generate site documentation and deploy it to GitHub Pages (see below).
+The workflow `Perform release` (see file `perform-release.yaml`) can only be triggered manually for a `release/...` branch. It first uses the [Maven release plugin](https://maven.apache.org/maven-release/maven-release-plugin/) to actually do the release (incl. tagging). The generated release artifacts are deployed to GitHub Packages by default (see below). Then it increments the patch version in the POM, so it ends up with `x.y.(z++)-SNAPSHOT` in the current `release/...` branch. Additionally, this workflow can generate site documentation and deploy it to GitHub Pages (see below).
 
 ## First steps
 
