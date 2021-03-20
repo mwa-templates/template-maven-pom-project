@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo ">>> Creating release and distributing the released package ..."
-echo "Note, that this also tags the release version and increments the development version, both in the release branch."
+echo "Note, that this also tags the release version and increments the development version in the release branch."
 [[ -n "${OVERRIDE_USE_CUSTOM_MAVEN_DISTRIBUTION}" ]] && USE_CUSTOM_MAVEN_DISTRIBUTION=${OVERRIDE_USE_CUSTOM_MAVEN_DISTRIBUTION}
 if [[ "${USE_CUSTOM_MAVEN_DISTRIBUTION}" != "true" ]]
 then

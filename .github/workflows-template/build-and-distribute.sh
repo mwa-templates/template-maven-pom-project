@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo ">>> Building project and distributing the built package ..."
+echo ">>> Building project and distributing the package ..."
 [[ -n "${OVERRIDE_USE_CUSTOM_MAVEN_DISTRIBUTION}" ]] && USE_CUSTOM_MAVEN_DISTRIBUTION=${OVERRIDE_USE_CUSTOM_MAVEN_DISTRIBUTION}
 if [[ "${USE_CUSTOM_MAVEN_DISTRIBUTION}" != "true" ]]
 then
