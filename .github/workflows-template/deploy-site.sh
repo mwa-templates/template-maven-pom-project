@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[[ -n "${OVERRIDE_DO_SITE_DEPLOYMENT}" ]] && DO_SITE_DEPLOYMENT=${OVERRIDE_DO_SITE_DEPLOYMENT}
+[[ -n "${INPUT_OVERRIDEDOSITEDEPLOYMENT}" ]] && DO_SITE_DEPLOYMENT=${INPUT_OVERRIDEDOSITEDEPLOYMENT}
 if [[ "${DO_SITE_DEPLOYMENT}" == "true" ]]
 then
 	echo ">>> Generating site documentation and deploying it ..."
