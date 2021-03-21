@@ -3,10 +3,10 @@ on:
    workflow_dispatch:
       inputs:
          overrideUseCustomMavenDistribution:
-            description: Override variable USE_CUSTOM_MAVEN_DISTRIBUTION
+            description: Override USE_CUSTOM_MAVEN_DISTRIBUTION
             required: false
          overrideDoSiteDeployment:
-            description: Override variable DO_SITE_DEPLOYMENT
+            description: Override DO_SITE_DEPLOYMENT
             required: false
 env:
    MAVEN_OPTS: -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
