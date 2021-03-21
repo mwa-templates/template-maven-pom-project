@@ -69,12 +69,16 @@ The Maven goals in the workflows upload the generated artifacts to GitHub Packag
 	MAVEN_DISTRIBUTION_USERNAME
 	MAVEN_DISTRIBUTION_PASSWORD
 
-The `USE_CUSTOM_MAVEN_DISTRIBUTION` must be a boolean value, so simply set it to `true`. The username and password are used for both URLs.
+The `USE_CUSTOM_MAVEN_DISTRIBUTION` variable holds a boolean value, so simply set it to `true`. The username and password are used for both URLs.
 
 See the workflows `Build and distribute` and `Perform release` for more details.
 
 ### Site deployment
 
-The generation and deployment of the site documentation is disabled by default in the `Perform release` workflow. If you need site documentation, you should consider setting the default value of the action input `doSiteDeployment` to `true`.
+The `Perform release` workflow is able to generate and deploy the Maven site documentation, but this is disabled by default. If you want to enable it, you need to add the following repository secret:
 
-If enabled, you also must enable the `gh-pages` branch, because this is where the generated site documentation will be deployed to. Note that this only works for public GitHub repositories. You can activate this branch by simply choosing a site theme in the repository settings.
+	DO_SITE_DEPLOYMENT
+
+This variable holds a boolean value, so simply set it to `true`. Additionally, you also must enable the `gh-pages` branch, because this is where the generated site documentation will be deployed to. Note that this only works for public GitHub repositories. You can activate this branch by simply choosing a site theme in the repository settings.
+
+See the workflow `Perform release` for more details.
