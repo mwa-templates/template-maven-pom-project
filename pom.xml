@@ -29,6 +29,7 @@
 			<url>https://opensource.org/licenses/MIT</url>
 		</license>
 	</licenses>
+
 	<!-- <organization>...</organization> -->
 	<!-- <developers>...</developers> -->
 	<!-- <contributors>...</contributors> -->
@@ -62,6 +63,7 @@
 			<url>scm:git:https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%.git</url>
 		</site>
 	</distributionManagement>
+
 	<!-- <repositories>...</repositories> -->
 	<!-- <pluginRepositories>...</pluginRepositories> -->
 
