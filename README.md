@@ -45,8 +45,8 @@ Replace the following placeholders with their actual values in the files `pom.xm
 	%%PROJECT_VERSION%%
 	%%PROJECT_NAME%%
 	%%PROJECT_DESCRIPTION%%
-	%%REPO_OWNER%%
-	%%REPO_NAME%%
+	%%GITHUB_REPO_OWNER%%
+	%%GITHUB_REPO_NAME%%
 	%%YEAR%%
 	%%NAME%%
 

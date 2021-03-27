@@ -15,7 +15,7 @@
 	<name>%%PROJECT_NAME%%</name>
 	<description>%%PROJECT_DESCRIPTION%%</description>
 	<inceptionYear>%%YEAR%%</inceptionYear>
-	<url>https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%</url>
+	<url>https://github.com/%%GITHUB_REPO_OWNER%%/%%GITHUB_REPO_NAME%%</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -36,18 +36,18 @@
 	<!-- <mailingLists>...</mailingLists> -->
 
 	<scm>
-		<url>https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%</url>
-		<connection>scm:git:https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%.git</connection>
-		<developerConnection>scm:git:https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%.git</developerConnection>
+		<url>https://github.com/%%GITHUB_REPO_OWNER%%/%%GITHUB_REPO_NAME%%</url>
+		<connection>scm:git:https://github.com/%%GITHUB_REPO_OWNER%%/%%GITHUB_REPO_NAME%%.git</connection>
+		<developerConnection>scm:git:https://github.com/%%GITHUB_REPO_OWNER%%/%%GITHUB_REPO_NAME%%.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 	<issueManagement>
 		<system>GitHub Issues</system>
-		<url>https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%/issues</url>
+		<url>https://github.com/%%GITHUB_REPO_OWNER%%/%%GITHUB_REPO_NAME%%/issues</url>
 	</issueManagement>
 	<ciManagement>
 		<system>GitHub Actions</system>
-		<url>https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%/actions</url>
+		<url>https://github.com/%%GITHUB_REPO_OWNER%%/%%GITHUB_REPO_NAME%%/actions</url>
 	</ciManagement>
 	<distributionManagement>
 		<snapshotRepository>
@@ -60,7 +60,7 @@
 		</repository>
 		<site>
 			<id>github</id>
-			<url>scm:git:https://github.com/%%REPO_OWNER%%/%%REPO_NAME%%.git</url>
+			<url>scm:git:https://github.com/%%GITHUB_REPO_OWNER%%/%%GITHUB_REPO_NAME%%.git</url>
 		</site>
 	</distributionManagement>
 
