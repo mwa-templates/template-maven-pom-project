@@ -83,7 +83,9 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+
 	<!-- <reporting>...</reporting> -->
+
 	<!-- <profiles>...</profiles> -->
 
 </project>
