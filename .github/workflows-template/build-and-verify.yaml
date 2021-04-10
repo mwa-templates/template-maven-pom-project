@@ -5,12 +5,8 @@ on:
       - develop
       - release/**
    workflow_dispatch: null
-env:
-   MAVEN_OPTS: -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
-   MVN_CLI_ARGS: --batch-mode --update-snapshots
-   GITHUB_TOKEN: ${{github.token}}
 jobs:
-   build-and-verify:
+   maven-verify:
       if: github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, 'skip ci')
       runs-on: ubuntu-latest
       steps:
@@ -22,4 +18,7 @@ jobs:
          with:
             path: ~/.m2/repository
             key: ${{runner.os}}-maven-${{hashFiles('**/pom.xml')}}
-      -  run: .github/workflows/build-and-verify.sh
+            restore-keys: ${{runner.os}}-maven-
+      -  run: .github/workflows/scripts/maven-verify.sh
+         env:
+            MAVEN_OPTS: -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn

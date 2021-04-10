@@ -4,22 +4,9 @@ on:
       branches:
       - develop
       - release/**
-   workflow_dispatch:
-      inputs:
-         overrideUseCustomMavenDistribution:
-            description: Override USE_CUSTOM_MAVEN_DISTRIBUTION
-            required: false
-env:
-   MAVEN_OPTS: -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
-   MVN_CLI_ARGS: --batch-mode --update-snapshots
-   GITHUB_TOKEN: ${{github.token}}
-   USE_CUSTOM_MAVEN_DISTRIBUTION: ${{secrets.USE_CUSTOM_MAVEN_DISTRIBUTION}}
-   MAVEN_DISTRIBUTION_SNAPSHOTS_URL: ${{secrets.MAVEN_DISTRIBUTION_SNAPSHOTS_URL}}
-   MAVEN_DISTRIBUTION_RELEASES_URL: ${{secrets.MAVEN_DISTRIBUTION_RELEASES_URL}}
-   MAVEN_DISTRIBUTION_USERNAME: ${{secrets.MAVEN_DISTRIBUTION_USERNAME}}
-   MAVEN_DISTRIBUTION_PASSWORD: ${{secrets.MAVEN_DISTRIBUTION_PASSWORD}}
+   workflow_dispatch: null
 jobs:
-   build-and-distribute:
+   maven-deploy:
       if: github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, 'skip ci')
       runs-on: ubuntu-latest
       steps:
@@ -34,5 +21,13 @@ jobs:
          with:
             path: ~/.m2/repository
             key: ${{runner.os}}-maven-${{hashFiles('**/pom.xml')}}
-      -  run: .github/workflows/check-maven-distribution-settings.sh
-      -  run: .github/workflows/build-and-distribute.sh
+            restore-keys: ${{runner.os}}-maven-
+      -  run: .github/workflows/scripts/maven-deploy.sh
+         env:
+            GITHUB_TOKEN: ${{github.token}}
+            MAVEN_OPTS: -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+            MAVEN_DISTRIBUTION_TYPE: ${{secrets.MAVEN_DISTRIBUTION_TYPE}}
+            MAVEN_DISTRIBUTION_SNAPSHOTS_URL: ${{secrets.MAVEN_DISTRIBUTION_SNAPSHOTS_URL}}
+            MAVEN_DISTRIBUTION_RELEASES_URL: ${{secrets.MAVEN_DISTRIBUTION_RELEASES_URL}}
+            MAVEN_DISTRIBUTION_USERNAME: ${{secrets.MAVEN_DISTRIBUTION_USERNAME}}
+            MAVEN_DISTRIBUTION_PASSWORD: ${{secrets.MAVEN_DISTRIBUTION_PASSWORD}}

@@ -1,6 +1,6 @@
 # Template for a simple Maven project
 
-This is a template repository for simple Maven projects (POM projects, libraries, or simply standalone applications). It consists of the usual Maven directory structure, a template POM file, and some workflow files for GitHub Actions that define how to build, verify, distribute, and release the project.
+This is a template repository for simple Maven projects (e.g. POM projects, libraries, or simple standalone applications). It consists of the usual Maven directory structure, a template POM file, and some workflow files for GitHub Actions that define how to build, verify, distribute, and release the project.
 
 This readme file describes the underlying concepts and the first necessary steps after creating a new repository based on this template.
 
@@ -16,13 +16,13 @@ Some of the workflows depend on a correct versioning in the POM of the project. 
 
 ## Workflow concepts
 
-The workflow `Build and verify` (see file `build-and-verify.yaml`) simply runs a `mvn verify` command after a push to any branch that is not `develop` or `release/*` , i.e. for feature or bugfix branches.
+The workflow `Build and verify` (see file `build-and-verify.yaml`) simply runs a `mvn verify` command after a push to any branch that is not `develop` or `release/*` , i.e. for feature or bugfix branches. This workflow can also be triggered manually.
 
-The workflow `Build and distribute`  (see file `build-and-distribute.yaml`) simply runs a `mvn deploy` command after a push to the `develop` branch or to any `release/*` branch. The generated snapshot artifacts are deployed to GitHub Packages by default (see below).
+The workflow `Build and distribute`  (see file `build-and-distribute.yaml`) simply runs a `mvn deploy` command after a push to the `develop` branch or to any `release/*` branch. The generated snapshot artifacts are deployed to GitHub Packages by default (see below). This workflow can also be triggered manually.
 
-The workflow `Prepare release` (see file `prepare-release.yaml`) can only be triggered manually for the `develop` branch. It first creates a new branch `release/x.y`, based on the POM's current snapshot version number (`x.y-SNAPSHOT`). Then it increments the minor version in the POM, so it ends up with `x.(y++)-SNAPSHOT` in the `develop` branch.
+The workflow `Prepare release` (see file `prepare-release.yaml`) can only be triggered manually for the `develop` branch. It creates a new branch `release/x.y`, based on the POM's current snapshot version number (`x.y-SNAPSHOT`). And it increments the minor version in the POM, so it ends up with `x.(y++)-SNAPSHOT` in the `develop` branch.
 
-The workflow `Perform release` (see file `perform-release.yaml`) can only be triggered manually for a `release/...` branch. It first uses the [Maven release plugin](https://maven.apache.org/maven-release/maven-release-plugin/) to actually do the release (incl. tagging). The generated release artifacts are deployed to GitHub Packages by default (see below). Then it increments the patch version in the POM, so it ends up with `x.y.(z++)-SNAPSHOT` in the current `release/...` branch. Additionally, this workflow can generate site documentation and deploy it to GitHub Pages (see below).
+The workflow `Perform release` (see file `perform-release.yaml`) can only be triggered manually for a `release/...` branch. It creates and tags the release by using the [Maven release plugin](https://maven.apache.org/maven-release/maven-release-plugin/). The generated release artifacts are deployed to GitHub Packages by default (see below). It also increments the patch version in the POM, so it ends up with `x.y.(z++)-SNAPSHOT` in the current `release/...` branch. Additionally, this workflow can generate site documentation and deploy it to GitHub Pages (see below).
 
 ## First steps
 
@@ -58,27 +58,24 @@ Additionally, you can/should do the following steps:
 - For POM projects the `src` folder might not be needed. Consider to delete it.
 - Because this file (`README.md`) is also copied, you should consider to delete this file or at least change its content.
 - Check whether the license fits your needs or should be replaced with a more appropriate one. The license is mentioned in two places: in the `LICENSE` file and in the `<licenses>` section in the POM.
+- Check whether the provided workflows fit your needs. Change them according to your needs. See below explanations.
 
 ### Upload to a custom Maven repository manager
 
-The Maven goals in the workflows upload the generated artifacts to GitHub Packages by default. If you want to upload them to a custom Maven repository manager, you need to add the following repository secrets:
+The Maven goals in the workflows upload generated artifacts to GitHub Packages by default. If you want to upload them to a custom Maven repository manager, you need to add the following repository secrets:
 
-	USE_CUSTOM_MAVEN_DISTRIBUTION
+	MAVEN_DISTRIBUTION_TYPE = CUSTOM
 	MAVEN_DISTRIBUTION_SNAPSHOTS_URL
 	MAVEN_DISTRIBUTION_RELEASES_URL
 	MAVEN_DISTRIBUTION_USERNAME
 	MAVEN_DISTRIBUTION_PASSWORD
 
-The `USE_CUSTOM_MAVEN_DISTRIBUTION` variable holds a boolean value, so simply set it to `true`. The username and password are used for both URLs.
-
 See the workflows `Build and distribute` and `Perform release` for more details.
 
 ### Site deployment
 
-The `Perform release` workflow is able to generate and deploy the Maven site documentation, but this is disabled by default. If you want to enable it, you need to add the following repository secret:
+The `Perform release` workflow is able to generate and deploy the Maven site documentation, but this is disabled by default. You can enable it with an input value when triggering the `Perform release` workflow. If you want to enable it as default, consider setting the workflow's input variable `doSiteDeployment` to `true`.
 
-	DO_SITE_DEPLOYMENT
-
-This variable holds a boolean value, so simply set it to `true`. Additionally, you also must enable the `gh-pages` branch, because this is where the generated site documentation will be deployed to. Note that this only works for public GitHub repositories. You can activate this branch by simply choosing a site theme in the repository settings.
+Additionally, you also must enable the `gh-pages` branch, because this is where the generated site documentation will be deployed to. Note that this only works for public GitHub repositories. You can activate this branch by simply choosing a site theme in the repository settings.
 
 See the workflow `Perform release` for more details.
