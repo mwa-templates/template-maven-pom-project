@@ -1,5 +1,6 @@
 #!/bin/bash
+set -o errexit
 
 echo "::group::Creating release branch"
-mvn -B -U build-helper:parse-version scm:branch -Dbranch="${RELEASE_BRANCH_NAME}" || exit 1
+mvn ${MAVEN_CLI_ARGS} build-helper:parse-version scm:branch -Dbranch="${RELEASE_BRANCH_NAME}"
 echo "::endgroup::"

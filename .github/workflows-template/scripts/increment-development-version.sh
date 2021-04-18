@@ -1,7 +1,8 @@
 #!/bin/bash
+set -o errexit
 
 echo "::group::Incrementing development version"
-mvn -B -U build-helper:parse-version versions:set versions:commit -DnewVersion="${NEXT_DEVELOPMENT_VERSION}" || exit 1
-git commit --all --message="${GIT_COMMIT_MESSAGE}" || exit 1
-git push || exit 1
+mvn ${MAVEN_CLI_ARGS} build-helper:parse-version versions:set versions:commit -DnewVersion="${NEXT_DEVELOPMENT_VERSION}"
+git commit --all --message="${GIT_COMMIT_MESSAGE}"
+git push
 echo "::endgroup::"

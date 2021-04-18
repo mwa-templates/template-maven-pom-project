@@ -1,6 +1,8 @@
 #!/bin/bash
+set -o errexit
 
 echo "::group::Checking Maven distribution settings"
+if [ -n "${OVERRIDE_MAVEN_DISTRIBUTION_TYPE}" ]; then MAVEN_DISTRIBUTION_TYPE=${OVERRIDE_MAVEN_DISTRIBUTION_TYPE}; fi
 if [ "${MAVEN_DISTRIBUTION_TYPE}" == "CUSTOM" ]
 then
 	if [ -n "${MAVEN_DISTRIBUTION_SNAPSHOTS_URL}" ] && [ -n "${MAVEN_DISTRIBUTION_RELEASES_URL}" ] && [ -n "${MAVEN_DISTRIBUTION_USERNAME}" ] && [ -n "${MAVEN_DISTRIBUTION_PASSWORD}" ]
@@ -24,7 +26,6 @@ then
 	export MAVEN_DISTRIBUTION_PASSWORD=${GITHUB_TOKEN}
 else
 	echo -e "\e[31mUnknown Maven distribution type.\e[0m"
-	echo "Set it to either 'CUSTOM' or 'GITHUB'. ('GITHUB' is the default value, if left empty.)"
 	exit 1
 fi
 echo "::endgroup::"

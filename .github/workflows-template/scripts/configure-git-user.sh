@@ -1,6 +1,7 @@
 #!/bin/bash
+set -o errexit
 
 echo "::group::Configuring user in global git configuration"
-git config --global user.name "GitHub Actions (${GITHUB_ACTOR})" || exit 1
-git config --global user.email "actions@users.noreply.github.com" || exit 1
+git config --global user.name "${GIT_USER_NAME}"
+git config --global user.email "${GIT_USER_EMAIL}"
 echo "::endgroup::"

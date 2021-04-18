@@ -15,9 +15,13 @@ jobs:
             key: ${{runner.os}}-maven-${{hashFiles('**/pom.xml')}}
             restore-keys: ${{runner.os}}-maven-
       -  run: .github/workflows/scripts/configure-git-user.sh
+         env:
+            GIT_USER_NAME: GitHub Actions (${{github.actor}})
+            GIT_USER_EMAIL: ${{github.actor}}.actions@users.noreply.github.com
       -  run: .github/workflows/scripts/create-release-branch.sh
          env:
             MAVEN_OPTS: -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+            MAVEN_CLI_ARGS: --batch-mode --update-snapshots
             RELEASE_BRANCH_NAME: release/${parsedVersion.majorVersion}.${parsedVersion.minorVersion}
    increment-development-version:
       if: github.ref == 'refs/heads/develop'
@@ -35,8 +39,12 @@ jobs:
             key: ${{runner.os}}-maven-${{hashFiles('**/pom.xml')}}
             restore-keys: ${{runner.os}}-maven-
       -  run: .github/workflows/scripts/configure-git-user.sh
+         env:
+            GIT_USER_NAME: GitHub Actions (${{github.actor}})
+            GIT_USER_EMAIL: ${{github.actor}}.actions@users.noreply.github.com
       -  run: .github/workflows/scripts/increment-development-version.sh
          env:
             MAVEN_OPTS: -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+            MAVEN_CLI_ARGS: --batch-mode --update-snapshots
             NEXT_DEVELOPMENT_VERSION: ${parsedVersion.majorVersion}.${parsedVersion.nextMinorVersion}-SNAPSHOT
             GIT_COMMIT_MESSAGE: Starting next development iteration.

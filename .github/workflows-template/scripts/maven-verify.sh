@@ -1,5 +1,6 @@
 #!/bin/bash
+set -o errexit
 
 echo "::group::Building the Maven package and verifying it"
-mvn -B -U clean verify || exit 1
+mvn ${MAVEN_CLI_ARGS} clean verify
 echo "::endgroup::"
