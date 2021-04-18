@@ -26,6 +26,7 @@ then
 	export MAVEN_DISTRIBUTION_PASSWORD=${GITHUB_TOKEN}
 else
 	echo -e "\e[31mUnknown Maven distribution type.\e[0m"
+	echo "Set it to either 'GITHUB' or 'CUSTOM' (with 'GITHUB' being the default value if left empty)."
 	exit 1
 fi
 echo "::endgroup::"

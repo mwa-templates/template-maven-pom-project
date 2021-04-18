@@ -5,6 +5,10 @@ on:
       - develop
       - release/**
    workflow_dispatch: null
+env:
+   GITHUB_TOKEN: ${{github.token}}
+   MAVEN_OPTS: -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+   MAVEN_CLI_ARGS: --batch-mode --update-snapshots
 jobs:
    maven-verify:
       if: github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, 'skip ci')
@@ -20,6 +24,3 @@ jobs:
             key: ${{runner.os}}-maven-${{hashFiles('**/pom.xml')}}
             restore-keys: ${{runner.os}}-maven-
       -  run: .github/workflows/scripts/maven-verify.sh
-         env:
-            MAVEN_OPTS: -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
-            MAVEN_CLI_ARGS: --batch-mode --update-snapshots
