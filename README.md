@@ -8,7 +8,7 @@ This readme file describes the underlying concepts and the first necessary steps
 
 The workflows assume a branching model that is somewhat inspired by the [git-flow branching model](https://nvie.com/posts/a-successful-git-branching-model/), but much less complicated.
 
-The `develop` branch is the default development branch. It should always contain a potentially releasable version of the software. Each actual development should take place in a feature or bugfix branch (e.g. `feature/...` or `bugfix/...` or whatever). Finished work should then simply be merged into the `develop` branch, usually via a pull request. For releasing, a release branch should be used. This can be done by the corresponding workflows (see below).
+The `develop` branch is the default development branch. It should always contain a potentially releasable version of the software. Each actual development should take place in a feature or bugfix branch (e.g. `feature/...` or `bugfix/...` or whatever). Finished work should then simply be merged into the `develop` branch, usually via a pull request. For releasing, a release branch should be used. This can be done by the corresponding workflows (see below). Note, that a `master` branch or a `main` branch does not exist.
 
 ## Versioning concept
 
@@ -74,7 +74,7 @@ See the workflows `Build and distribute` and `Perform release` for more details.
 
 ### Site deployment
 
-The `Perform release` workflow is able to generate and deploy the Maven site documentation, but this is disabled by default. You can enable it with an input value when triggering the `Perform release` workflow. If you want to enable it as default, consider setting the workflow's input variable `doSiteDeployment` to `true`.
+The `Perform release` workflow is able to generate and deploy the Maven site documentation, but this is disabled by default. You can enable it with an input value when triggering the `Perform release` workflow. If you want to enable it as default, you must set the workflow's input variable `doSiteDeployment` to `true`.
 
 Additionally, you also must enable the `gh-pages` branch, because this is where the generated site documentation will be deployed to. Note that this only works for public GitHub repositories. You can activate this branch by simply choosing a site theme in the repository settings.
 
