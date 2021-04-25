@@ -14,7 +14,7 @@ env:
    MAVEN_OPTS: -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
    MAVEN_CLI_ARGS: --batch-mode --update-snapshots
    OVERRIDE_MAVEN_DISTRIBUTION_TYPE: ${{github.event.inputs.overrideMavenDistributionType}}
-   MAVEN_DISTRIBUTION_TYPE: GITHUB
+   MAVEN_DISTRIBUTION_TYPE: ${{secrets.MAVEN_DISTRIBUTION_TYPE}}
    MAVEN_DISTRIBUTION_SNAPSHOTS_URL: ${{secrets.MAVEN_DISTRIBUTION_SNAPSHOTS_URL}}
    MAVEN_DISTRIBUTION_RELEASES_URL: ${{secrets.MAVEN_DISTRIBUTION_RELEASES_URL}}
    MAVEN_DISTRIBUTION_USERNAME: ${{secrets.MAVEN_DISTRIBUTION_USERNAME}}

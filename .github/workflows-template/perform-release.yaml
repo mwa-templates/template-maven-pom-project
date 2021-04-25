@@ -17,7 +17,7 @@ env:
    TAG_NAME_FORMAT: '@{project.version}' # Note: If changing this format, you also have to adjust the checkout ref of the 'deploy-site' job.
    NEXT_DEVELOPMENT_VERSION: ${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.nextIncrementalVersion}-SNAPSHOT
    OVERRIDE_MAVEN_DISTRIBUTION_TYPE: ${{github.event.inputs.overrideMavenDistributionType}}
-   MAVEN_DISTRIBUTION_TYPE: GITHUB
+   MAVEN_DISTRIBUTION_TYPE: ${{secrets.MAVEN_DISTRIBUTION_TYPE}}
    MAVEN_DISTRIBUTION_SNAPSHOTS_URL: ${{secrets.MAVEN_DISTRIBUTION_SNAPSHOTS_URL}}
    MAVEN_DISTRIBUTION_RELEASES_URL: ${{secrets.MAVEN_DISTRIBUTION_RELEASES_URL}}
    MAVEN_DISTRIBUTION_USERNAME: ${{secrets.MAVEN_DISTRIBUTION_USERNAME}}
