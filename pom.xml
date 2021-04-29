@@ -19,7 +19,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
 	</properties>
 
 	<licenses>
@@ -71,17 +70,10 @@
 	<!-- <dependencyManagement>...</dependencyManagement> -->
 	<!-- <dependencies>...</dependencies> -->
 
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-deploy-plugin</artifactId>
-					<version>${maven-deploy-plugin.version}</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
+	<!-- <build> -->
+	<!-- <pluginManagement>...</pluginManagement> -->
+	<!-- <plugins>...</plugins> -->
+	<!-- </build> -->
 
 	<!-- <reporting>...</reporting> -->
 
