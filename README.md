@@ -6,13 +6,13 @@ This readme file describes the underlying concepts and the first necessary steps
 
 ## Branching model
 
-The workflows assume a branching model that is somewhat inspired by the [git-flow branching model](https://nvie.com/posts/a-successful-git-branching-model/), but much less complicated.
+The provided workflows assume a branching model that is somewhat inspired by the [git-flow branching model](https://nvie.com/posts/a-successful-git-branching-model/), but much less complicated.
 
 The `develop` branch is the default development branch. It should always contain a potentially releasable version of the software. Each actual development should take place in a feature or bugfix branch (e.g. `feature/...` or `bugfix/...` or whatever). Finished work should then simply be merged into the `develop` branch, usually via a pull request. For releasing, a release branch should be used. This can be done by the corresponding workflows (see below). Note, that a `master` branch or a `main` branch does not exist.
 
 ## Versioning concept
 
-Some of the workflows depend on a correct versioning in the POM of the project. In the `develop` branch this version should always have a major and a minor version, but no patch version; i.e. `1.0-SNAPSHOT`. The same holds true for any feature or bugfix branch. For the release branches, the below mentioned workflows will take care of the versioning.
+The workflows depend on a correct versioning in the POM of the project. In the `develop` branch this version should always have a major and a minor version, but no patch version; i.e. `1.0-SNAPSHOT`. The same holds true for any feature or bugfix branch. For the release branches, the workflows will take care of the versioning.
 
 ## Workflow concepts
 
@@ -20,9 +20,9 @@ The workflow `Build and verify` (see file `build-and-verify.yaml`) simply runs a
 
 The workflow `Build and distribute`  (see file `build-and-distribute.yaml`) simply runs a `mvn deploy` command after a push to the `develop` branch or to any `release/*` branch. The generated snapshot artifacts are deployed to GitHub Packages by default (see below). This workflow can also be triggered manually.
 
-The workflow `Prepare release` (see file `prepare-release.yaml`) can only be triggered manually for the `develop` branch. It creates a new branch `release/x.y`, based on the POM's current snapshot version number (`x.y-SNAPSHOT`). And it increments the minor version in the POM, so it ends up with `x.(y++)-SNAPSHOT` in the `develop` branch.
+The workflow `Prepare release` (see file `prepare-release.yaml`) can only be triggered manually for the `develop` branch. It creates a new branch `release/x.y`, based on the POM's current snapshot version number (`x.y-SNAPSHOT`). It also increments the minor version in the POM, so it ends up with `x.(y++)-SNAPSHOT` in the `develop` branch.
 
-The workflow `Perform release` (see file `perform-release.yaml`) can only be triggered manually for a `release/...` branch. It creates and tags the release by using the [Maven release plugin](https://maven.apache.org/maven-release/maven-release-plugin/). The generated release artifacts are deployed to GitHub Packages by default (see below). It also increments the patch version in the POM, so it ends up with `x.y.(z++)-SNAPSHOT` in the current `release/...` branch. Additionally, this workflow can generate site documentation and deploy it to GitHub Pages (see below).
+The workflow `Perform release` (see file `perform-release.yaml`) can only be triggered manually for a `release/...` branch. It creates and tags the release by using the [Maven release plugin](https://maven.apache.org/maven-release/maven-release-plugin/). The generated release artifacts are deployed to GitHub Packages by default (see below). It also increments the patch version in the POM, so it ends up with `x.y.(z++)-SNAPSHOT` in the current `release/...` branch. Additionally, this workflow can generate and deploy site documentation (see below).
 
 ## First steps
 
@@ -34,7 +34,7 @@ Besides doing some basic settings (like "Wikis", "Projects", "Issues", "Merge bu
 
 	GH_WORKFLOW_TOKEN
 
-This must be a personal access token with the scopes `repo` and `write:packages`. It is used in some workflows instead of `GITHUB_TOKEN` (which is provided by GitHub) because the latter does not trigger new workflows after pushing code changes with it.
+This must be a personal access token with at least the scopes `repo` and `write:packages`. It is used in some workflows instead of `GITHUB_TOKEN` (which is provided by GitHub) because the latter does not trigger new workflows after pushing code changes with it. If you plan to use the [GitHub Site Plugin](https://github.com/github/maven-plugins) for site deployment, the `user` scope should also be selected.
 
 ### Source code adjustments
 
@@ -76,6 +76,6 @@ See the workflows `Build and distribute` and `Perform release` for more details.
 
 The `Perform release` workflow is able to generate and deploy the Maven site documentation, but this is disabled by default. You can enable it with an input value when triggering the `Perform release` workflow. If you want to enable it as default, you must set the workflow's input variable `doSiteDeployment` to `true`.
 
-Additionally, you also must enable the `gh-pages` branch, because this is where the generated site documentation will be deployed to. Note that this only works for public GitHub repositories. You can activate this branch by simply choosing a site theme in the repository settings.
+This template does not provide any means for how to generate and deploy the site documentation. The workflow triggers a `mvn site-deploy` command, but it will not do any deploy unless it is configured. I suggest to use the Maven site plugin provided by GitHub. If you do so, you also must enable the `gh-pages` branch, because this is where the generated site documentation will be deployed to. Note that this only works for public GitHub repositories. You can activate this branch by simply choosing a site theme in the repository settings.
 
 See the workflow `Perform release` for more details.

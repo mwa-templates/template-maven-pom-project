@@ -12,15 +12,9 @@ on:
 env:
    GITHUB_TOKEN: ${{github.token}}
    MAVEN_OPTS: -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
-   MAVEN_CLI_ARGS: --batch-mode --update-snapshots
-   OVERRIDE_MAVEN_DISTRIBUTION_TYPE: ${{github.event.inputs.overrideMavenDistributionType}}
-   MAVEN_DISTRIBUTION_TYPE: ${{secrets.MAVEN_DISTRIBUTION_TYPE}}
-   MAVEN_DISTRIBUTION_SNAPSHOTS_URL: ${{secrets.MAVEN_DISTRIBUTION_SNAPSHOTS_URL}}
-   MAVEN_DISTRIBUTION_RELEASES_URL: ${{secrets.MAVEN_DISTRIBUTION_RELEASES_URL}}
-   MAVEN_DISTRIBUTION_USERNAME: ${{secrets.MAVEN_DISTRIBUTION_USERNAME}}
-   MAVEN_DISTRIBUTION_PASSWORD: ${{secrets.MAVEN_DISTRIBUTION_PASSWORD}}
+   MAVEN_DEFAULT_ARGS: --batch-mode --update-snapshots
 jobs:
-   maven-deploy:
+   build-and-distribute-maven-package:
       if: github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, 'skip ci')
       runs-on: ubuntu-latest
       steps:
@@ -35,5 +29,12 @@ jobs:
          with:
             path: ~/.m2/repository
             key: ${{runner.os}}-maven-${{hashFiles('**/pom.xml')}}
-            restore-keys: ${{runner.os}}-maven-
-      -  run: .github/workflows/scripts/maven-deploy.sh
+      -  run: .github/workflows/scripts/build-and-distribute-maven-package.sh
+         env:
+            MAVEN_ADDITIONAL_ARGS: -Dbuilding
+            OVERRIDE_MAVEN_DISTRIBUTION_TYPE: ${{github.event.inputs.overrideMavenDistributionType}}
+            MAVEN_DISTRIBUTION_TYPE: ${{secrets.MAVEN_DISTRIBUTION_TYPE}}
+            MAVEN_DISTRIBUTION_SNAPSHOTS_URL: ${{secrets.MAVEN_DISTRIBUTION_SNAPSHOTS_URL}}
+            MAVEN_DISTRIBUTION_RELEASES_URL: ${{secrets.MAVEN_DISTRIBUTION_RELEASES_URL}}
+            MAVEN_DISTRIBUTION_USERNAME: ${{secrets.MAVEN_DISTRIBUTION_USERNAME}}
+            MAVEN_DISTRIBUTION_PASSWORD: ${{secrets.MAVEN_DISTRIBUTION_PASSWORD}}
