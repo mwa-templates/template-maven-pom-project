@@ -30,11 +30,11 @@ After creating a new repository based on this template, you need to do some init
 
 ### Setup in GitHub
 
-Besides doing some basic settings (like "Wikis", "Projects", "Issues", "Merge buttons", etc.), you need to add the following repository secret:
+Besides doing some basic settings (like "Wikis", "Projects", "Issues", "Merge buttons", etc.), you need to create a personal access token and add it as the following repository secret:
 
 	GH_WORKFLOW_TOKEN
 
-This must be a personal access token with at least the scopes `repo` and `write:packages`. It is used in some workflows instead of `GITHUB_TOKEN` (which is provided by GitHub) because the latter does not trigger new workflows after pushing code changes with it. If you plan to use the [GitHub Site Plugin](https://github.com/github/maven-plugins) for site deployment, the `user` scope should also be selected.
+This token is used in some workflows instead of `{{github.token}}` (which is provided by GitHub) because the latter does not trigger new workflows after pushing code changes with it. Additionally, it might not have all required scopes, therefore at least the scopes `repo` and `write:packages` should be selected. If you plan to use this token for authentication in the [GitHub Site Maven Plugin](https://github.com/github/maven-plugins), the `user` scope should also be selected.
 
 ### Source code adjustments
 
@@ -76,6 +76,6 @@ See the workflows `Build and distribute` and `Perform release` for more details.
 
 The `Perform release` workflow is able to generate and deploy the Maven site documentation, but this is disabled by default. You can enable it with an input value when triggering the `Perform release` workflow. If you want to enable it as default, you must set the workflow's input variable `doSiteDeployment` to `true`.
 
-This template does not provide any means for how to generate and deploy the site documentation. The workflow triggers a `mvn site-deploy` command, but it will not do any deploy unless it is configured. I suggest to use the Maven site plugin provided by GitHub. If you do so, you also must enable the `gh-pages` branch, because this is where the generated site documentation will be deployed to. Note that this only works for public GitHub repositories. You can activate this branch by simply choosing a site theme in the repository settings.
+This template does not provide any means for how to generate and deploy the site documentation. The workflow triggers a `mvn site-deploy` command, but it will not do any deploy unless it is configured. I suggest to use the Site Maven Plugin provided by GitHub. If you do so, you also must enable the `gh-pages` branch, because this is where the generated site documentation will be deployed to. Note that this only works for public GitHub repositories. You can activate this branch by simply choosing a site theme in the repository settings.
 
 See the workflow `Perform release` for more details.

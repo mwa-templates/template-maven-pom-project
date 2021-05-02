@@ -7,6 +7,7 @@ on:
    workflow_dispatch: null
 env:
    GITHUB_TOKEN: ${{github.token}}
+   GH_WORKFLOW_TOKEN: ${{secrets.GH_WORKFLOW_TOKEN}}
    MAVEN_OPTS: -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
    MAVEN_DEFAULT_ARGS: --batch-mode --update-snapshots
 jobs:

@@ -11,6 +11,7 @@ on:
             default: 'false'
 env:
    GITHUB_TOKEN: ${{github.token}}
+   GH_WORKFLOW_TOKEN: ${{secrets.GH_WORKFLOW_TOKEN}}
    MAVEN_OPTS: -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
    MAVEN_DEFAULT_ARGS: --batch-mode --update-snapshots
    GIT_USER_NAME: GitHub Actions (${{github.actor}})
@@ -24,7 +25,7 @@ jobs:
       steps:
       -  uses: actions/checkout@v2
          with:
-            token: ${{secrets.GH_WORKFLOW_TOKEN}}
+            token: ${{env.GH_WORKFLOW_TOKEN}}
       -  uses: actions/setup-java@v1
          with:
             java-version: 11
