@@ -16,13 +16,13 @@ The workflows depend on a correct versioning in the POM of the project. In the `
 
 ## Workflow concepts
 
-The workflow `Build and verify` (see file `build-and-verify.yaml`) simply runs a `mvn verify` command after a push to any branch that is not `develop` or `release/*` , i.e. for feature or bugfix branches. This workflow can also be triggered manually.
+The workflow `Build and verify` (see file `build-and-verify.yaml`) simply runs a `mvn verify` command after a push to any branch that is not `develop` or `release/*` , i.e. for feature or bugfix branches. This workflow can also be triggered manually for any branch.
 
-The workflow `Build and distribute`  (see file `build-and-distribute.yaml`) simply runs a `mvn deploy` command after a push to the `develop` branch or to any `release/*` branch. The generated snapshot artifacts are deployed to GitHub Packages by default (see below). This workflow can also be triggered manually.
+The workflow `Build and distribute`  (see file `build-and-distribute.yaml`) simply runs a `mvn deploy` command after a push to the `develop` branch or to any `release/*` branch. The generated snapshot artifacts are deployed to GitHub Packages by default (see below). This workflow can also be triggered manually for any branch.
 
 The workflow `Prepare release` (see file `prepare-release.yaml`) can only be triggered manually for the `develop` branch. It creates a new branch `release/x.y`, based on the POM's current snapshot version number (`x.y-SNAPSHOT`). It also increments the minor version in the POM, so it ends up with `x.(y++)-SNAPSHOT` in the `develop` branch.
 
-The workflow `Perform release` (see file `perform-release.yaml`) can only be triggered manually for a `release/...` branch. It creates and tags the release by using the [Maven release plugin](https://maven.apache.org/maven-release/maven-release-plugin/). The generated release artifacts are deployed to GitHub Packages by default (see below). It also increments the patch version in the POM, so it ends up with `x.y.(z++)-SNAPSHOT` in the current `release/...` branch. Additionally, this workflow can generate and deploy site documentation (see below).
+The workflow `Perform release` (see file `perform-release.yaml`) can only be triggered manually for any `release/...` branch. It creates and tags the release by using the [Maven release plugin](https://maven.apache.org/maven-release/maven-release-plugin/). The generated release artifacts are deployed to GitHub Packages by default (see below). It also increments the patch version in the POM, so it ends up with `x.y.(z++)-SNAPSHOT` in the current `release/...` branch. Additionally, this workflow can generate and deploy site documentation (see below).
 
 ## First steps
 
@@ -76,7 +76,7 @@ See the workflows `Build and distribute` and `Perform release` for more details.
 
 The `Perform release` workflow contains a job that is able to trigger the generation and deployment of a Maven site documentation, but that job is disabled by default. You can enable it with an input value when triggering the workflow. If you want to enable it as a default, simply set the workflow's input variable `doSiteDeployment` to `true`.
 
-The job simply runs a `mvn site-deploy` command for the tagged release, but keep in mind that there is no pre-configuration for site deployment (e.g. no `<site>` element in the POM).
+This site job simply runs a `mvn site-deploy` command for the tagged release, but keep in mind that there is no pre-configuration for site deployment (e.g. no `<site>` element in the POM).
 
 If you plan to use the GitHub Site Maven Plugin, you must also enable the `gh-pages` branch. This is the place where the generated site documentation will be deployed to. Note that this only works for public GitHub repositories. You can activate this branch by simply choosing a site theme in the repository settings.
 
